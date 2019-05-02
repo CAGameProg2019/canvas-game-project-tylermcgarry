@@ -15,7 +15,7 @@ window.addEventListener('keydown', function(event) {
 	if (event.key === 'd') {
 		keyPressed.d = true;
   	}
-	if (event.key === 'space') {
+	if (event.key === ' ') {
 		keyPressed.space = true;
 	}
 });
@@ -26,14 +26,14 @@ window.addEventListener('keyup', function(event) {
 	if (event.key === 'd') {
 		keyPressed.d = false;
   	}
-	if (event.key === 'space') {
+	if (event.key === ' ') {
 		keyPressed.space = false;
 	}
 });
+   
 
 
-
-
+   
 let center = {
 	x: canvas.width/2,
 	y: canvas.height/2
@@ -44,9 +44,9 @@ let playerHeight = 40;
 let playerSpeed = 5;
 
 let keyPressed = {
-  a: true, 
-  d: true,
-  space: true
+  a: false, 
+  d: false,
+  space: false
 };
 
 
@@ -72,7 +72,11 @@ function update() {
 	player.x += playerSpeed
 	}
 	if (keyPressed.space) {
-	  player.y -= 1;
+	  player.y -= playerSpeed;
+		console.log('yeet');
+	} if ((keyPressed.space === false) && (player.y > 400)) {
+		player.y += playerSpeed;
+		console.log('yote');
 	}
 
 
@@ -83,9 +87,7 @@ function update() {
 	}
 	if (player.x > 300) {
 		player.x = 0
-
 	}
-	
 	
 	
 	
