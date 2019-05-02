@@ -10,19 +10,25 @@ window.addEventListener('load', () => {
 });
 window.addEventListener('keydown', function(event) {
 	if (event.key === 'a') {
-    keyPressed.a = true;
+    	keyPressed.a = true;
 	} 
 	if (event.key === 'd') {
-    keyPressed.d = true;
+		keyPressed.d = true;
   	}
+	if (event.key === 'space') {
+		keyPressed.space = true;
+	}
 });
 window.addEventListener('keyup', function(event) {
 	if (event.key === 'a') {
-    keyPressed.a = false;
+		keyPressed.a = false;
 	} 
 	if (event.key === 'd') {
-    keyPressed.d = false;
+		keyPressed.d = false;
   	}
+	if (event.key === 'space') {
+		keyPressed.space = false;
+	}
 });
 
 
@@ -39,7 +45,8 @@ let playerSpeed = 5;
 
 let keyPressed = {
   a: true, 
-  d: true
+  d: true,
+  space: true
 };
 
 
@@ -54,25 +61,31 @@ function init() {
 }
 
 function update() {
-c.clearRect(0, 0, canvas.width, canvas.height);
+	c.clearRect(0, 0, canvas.width, canvas.height);
 	player.draw();
 
-  if (keyPressed.a) {
-    player.x -= playerSpeed
-	  
-  }  if (keyPressed.d) {
-    player.x += playerSpeed
-  }
+	// Key Press thingys
+	if (keyPressed.a) {
+	player.x -= playerSpeed
 
+	}  if (keyPressed.d) { 
+	player.x += playerSpeed
+	}
+	if (keyPressed.space) {
+	  player.y -= 1;
+	}
+
+
+	// Infinite Screen 
 	if (player.x < -playerWidth) {
 		player.x = 300
-		
+
 	}
 	if (player.x > 300) {
 		player.x = 0
-		
+
 	}
-	//console.log(canvas.width);
+	
 	
 	
 	
