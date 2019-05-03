@@ -1,26 +1,29 @@
 class Player extends Vector {
     
-    constructor(x, y, dx, dy, playerWidth, playerHeight) {
+    constructor(x, y, dx, dy, width, height, color) {
 		super(x, y);
 		
 		this.dx = dx;
 		this.dy = dy;
-		this.playerHeight = playerHeight;
-		this.playerWidth = playerWidth;
+		this.height = height;
+		this.width = width;
+		this.color = color;
 	
-		
     }
 	
 	draw() {
 		
 		c.beginPath();
-		c.rect(this.x, this.y, playerWidth, playerHeight);
+		c.rect(this.x, this.y, this.width, this.height);
 		c.fill();
 		
-		
-		
+		this.dy += 1;
 		this.x += this.dx;
 		this.y += this.dy;
-
+		
+//		if (this.y > 500) {
+//			this.dy = -this.dy;
+//		}
+		
 	}
 }

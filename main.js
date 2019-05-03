@@ -31,53 +31,71 @@ window.addEventListener('keyup', function(event) {
 	}
 });
    
-
-
+let keyPressed = {
+  a: false, 
+  d: false,
+  space: false
+};
    
 let center = {
 	x: canvas.width/2,
 	y: canvas.height/2
 }
 let player;
-let playerWidth = 40;
+let platform;
+let playerWidth = 30;
 let playerHeight = 40;
 let playerSpeed = 5;
+let platforms = [];
 
-let keyPressed = {
-  a: false, 
-  d: false,
-  space: false
-};
+
+
+
 
 
 
 function init() {
 	
 	player = new Player (140, 400, 0, 0, playerWidth, playerHeight);
+	
+	for (var i = 0; i < 25; i++) {
 		
-		
-		update();
+		platform = new Platform (Math.random()*300, Math.random()*canvas.height, 45, 7, 'red');
+		platforms.push(platform);
+	}
+
+
+	update();
 	
 }
 
 function update() {
 	c.clearRect(0, 0, canvas.width, canvas.height);
+   
+	
 	player.draw();
-
-	// Key Press thingys
+	// Drawing Platforms
+	for (var i = 0; i < 10; i++) {
+		platforms[i].draw();
+	}
+	
+	
+	// Key Press Detection
 	if (keyPressed.a) {
 	player.x -= playerSpeed
 
 	}  if (keyPressed.d) { 
 	player.x += playerSpeed
 	}
-	if (keyPressed.space) {
-	  player.y -= playerSpeed;
-		console.log('yeet');
-	} if ((keyPressed.space === false) && (player.y > 400)) {
-		player.y += playerSpeed;
-		console.log('yote');
+	
+	// BOUNCING Conditions
+	
+	if (((player.x + playerWidth < platforms[i].x) && (player.x < platforms[i].x + 45)) && (player.y + 40 === platforms[i].y) && (player.speed > 0)) {
+		this.dy = -this.dy;
+		console.log('holy fuck');
 	}
+	
+	// https://codepen.io/tylermcgarry/pen/QYqvoM?editors=0010
 
 
 	// Infinite Screen 
