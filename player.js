@@ -17,13 +17,11 @@ class Player extends Vector {
 		c.rect(this.x, this.y, this.width, this.height);
 		c.fill();
 		
-		this.dy += 1;
+		//this.dy += 1;
 		this.x += this.dx;
 		this.y += this.dy;
 		
-//		if (this.y > 500) {
-//			this.dy = -this.dy;
-//		}
+	
 		
 	}
 }

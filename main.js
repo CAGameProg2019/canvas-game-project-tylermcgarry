@@ -88,7 +88,7 @@ function update() {
 	player.x += playerSpeed
 	}
 	
-	// BOUNCING Conditions
+	// BOUNCING Condition s
 	
 	if (((player.x + playerWidth < platforms[i].x) && (player.x < platforms[i].x + 45)) && (player.y + 40 === platforms[i].y) && (player.speed > 0)) {
 		this.dy = -this.dy;
