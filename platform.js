@@ -7,6 +7,7 @@ class Platform extends Vector {
 		this.height = height;
 		this.width = width;
 		this.color = color;
+		this.dy = .2;
 	}
 	
 	draw() {
@@ -16,6 +17,7 @@ class Platform extends Vector {
 		c.fill();
 		
 		
+		this.y += this.dy
 	}
 }
 

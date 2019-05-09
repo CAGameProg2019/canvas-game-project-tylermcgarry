@@ -16,7 +16,7 @@ window.addEventListener('keydown', function(event) {
 		keyPressed.d = true;
   	}
 	if (event.key === ' ') {
-		keyPressed.space = true;
+		player.dy = -player.dy;  
 	}
 });
 window.addEventListener('keyup', function(event) {
@@ -47,6 +47,7 @@ let playerWidth = 30;
 let playerHeight = 40;
 let playerSpeed = 5;
 let platforms = [];
+let platformNum = 10;
 
 
 
@@ -56,47 +57,54 @@ let platforms = [];
 
 function init() {
 	
-	player = new Player (140, 400, 0, 0, playerWidth, playerHeight);
+	player = new Player (160, 200, 0, 0, playerWidth, playerHeight);
 	
-	for (var i = 0; i < 25; i++) {
+	for (var i = 0; i < platformNum; i++) {
 		
-		platform = new Platform (Math.random()*300, Math.random()*canvas.height, 45, 7, 'red');
+		
+		//platform = new Platform (150, 400, 45, 7, 'red')
+		platform = new Platform (Math.random()*300, Math.random()*canvas.height, 45, 7, 'black');
 		platforms.push(platform);
 	}
 
-
+	
 	update();
 	
 }
 
 function update() {
-	c.clearRect(0, 0, canvas.width, canvas.height);
+	c.clearRect(0, 0, canvas.width, canvas.height); 
    
-	
 	player.draw();
+	
 	// Drawing Platforms
-	for (var i = 0; i < 10; i++) {
+	
+	for (var i=0; i < platformNum; i++) {
 		platforms[i].draw();
+
 	}
 	
 	
 	// Key Press Detection
 	if (keyPressed.a) {
-	player.x -= playerSpeed
-
+		player.x -= playerSpeed
 	}  if (keyPressed.d) { 
-	player.x += playerSpeed
-	}
+		player.x += playerSpeed
+	} 
 	
-	// BOUNCING Condition s
+	// Collision Detection
 	
-	if (((player.x + playerWidth < platforms[i].x) && (player.x < platforms[i].x + 45)) && (player.y + 40 === platforms[i].y) && (player.speed > 0)) {
-		this.dy = -this.dy;
-		console.log('holy fuck');
-	}
 	
-	// https://codepen.io/tylermcgarry/pen/QYqvoM?editors=0010
 
+for (var i = 0; i < platforms.length; i++) {
+
+		if (player.x > platforms[i].x && player.x < platforms[i].x + platform.width && platforms[i].y < player.y + player.height && player.dy > 0) {
+			player.dy = -player.dy;
+			
+		}
+	 
+}
+	//console.log(platforms);
 
 	// Infinite Screen 
 	if (player.x < -playerWidth) {

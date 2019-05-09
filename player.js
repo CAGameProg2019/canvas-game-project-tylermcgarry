@@ -15,9 +15,10 @@ class Player extends Vector {
 		
 		c.beginPath();
 		c.rect(this.x, this.y, this.width, this.height);
+		c.fillStyle = this.color;
 		c.fill();
 		
-		//this.dy += 1;
+		this.dy += 1;
 		this.x += this.dx;
 		this.y += this.dy;
 		
