@@ -7,7 +7,7 @@ class Platform extends Vector {
 		this.height = height;
 		this.width = width;
 		this.color = color;
-		this.dy = .2;
+		this.dy = 0;
 	}
 	
 	draw() {
@@ -18,6 +18,13 @@ class Platform extends Vector {
 		
 		
 		this.y += this.dy
+		this.dy = .75;
+		
+		if (player.y < 300 && player.dy < 0) {
+			this.dy = -player.dy;
+		} if (player.y < 100) {
+			this.dy = 4;
+		}
 	}
 }
 
