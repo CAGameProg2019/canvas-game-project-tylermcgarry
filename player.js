@@ -14,11 +14,11 @@ class Player extends Vector {
 	draw(bounce) { 
 		
 		c.beginPath();
-		c.rect(this.x, this.y, this.width, this.height);
 		c.fillStyle = this.color;
+		c.rect(this.x, this.y, this.width, this.height);
 		c.fill();
 		if (bounce) {
-			this.dy *= -1;
+			this.dy *= -jumpSpeed;
 		} else {
 			this.dy += 1;
 		}
@@ -28,7 +28,7 @@ class Player extends Vector {
 		this.x += this.dx;
 		this.y += this.dy;
 		
-		this.dy += 1;
+		this.dy += jumpSpeed;
 		
 	}
 }
