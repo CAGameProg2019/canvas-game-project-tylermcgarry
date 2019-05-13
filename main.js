@@ -16,7 +16,7 @@ window.addEventListener('keydown', function(event) {
 		keyPressed.d = true;
   	}
 	if (event.key === ' ') {
-		player.dy = -player.dy;  
+		keyPressed.space = true  ;  
 	}
 });
 window.addEventListener('keyup', function(event) {
@@ -43,6 +43,7 @@ let center = {
 }
 let player;
 let platform;
+let shoot;
 let playerWidth = 30;
 let playerHeight = 40;
 let playerSpeed = 7;
@@ -72,6 +73,10 @@ function color() {
 function init() {
 	
 	player = new Player (160, 200, 0, 0, playerWidth, playerHeight, "#03A9F4");
+	
+	
+	
+	
 	
 	for (var i = 0; i < monsterNum; i++) {
 		monster = new Monster(Math.random()*boundary, Math.random()*canvas.height, 50, 30, '#F44336');
@@ -121,10 +126,14 @@ function update() {
 	
 	// Key Press Detection
 	if (keyPressed.a) {
-		player.x -= playerSpeed
+		player.x -= playerSpeeda
 	}  if (keyPressed.d) { 
 		player.x += playerSpeed
-	} 
+	}  if (keyPressed.space) {
+		shoot = new Shoot(player.x, player.y -3, 5, 20, 'red');  
+		shoot.draw();
+		
+	}
 	
 	// Collision Detection
 	
@@ -141,7 +150,7 @@ function update() {
 	
 	// Platforms
 	let bounce = false;
-	
+	  
 	for (var i = 0; i < platforms.length; i++) {
 	
 		if (player.x > platforms[i].x && player.x < platforms[i].x + platform.width && platforms[i].y < player.y + player.height && player.dy >= 0) {	
@@ -150,6 +159,9 @@ function update() {
 	}
 	
 	player.draw(bounce);
+	
+	
+	
 	
 	
 	// Infinite Screen 
