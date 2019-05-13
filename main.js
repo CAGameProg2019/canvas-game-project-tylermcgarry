@@ -52,11 +52,16 @@ let monsters = [];
 let platformNum = 10;
 let monsterNum = 1;
 let boundary = 400;
+let bgcolor = "white";
 
 function gameOver() {
 
 	platforms = [];
 	monsters = [];
+}
+
+function color() {
+	bgcolor = "#1d1f21";
 }
 
 
@@ -87,9 +92,8 @@ function init() {
 
 function update() {
 	c.beginPath();
-	c.fillStyle = "#1d1f21";
+	c.fillStyle = bgcolor;
 	c.rect(0, 0, canvas.width, canvas.height);
-	
 	c.fill();
 	
 	//c.clearRect(0, 0, canvas.width, canvas.height); 
@@ -111,7 +115,8 @@ function update() {
 			monsters[i].x = Math.random()* boundary - 45;	
 		}
 	}
-
+	
+	setTimeout(color, 8000);
 	
 	
 	// Key Press Detection
@@ -126,7 +131,7 @@ function update() {
 	// Monsters
 	
 	for ( var i = 0; i < monsters.length; i++) {
-		if (monsters[i].x < player.x + player.width && monsters[i].x + monsters[i].width > player.x && monsters[i].y < monsters[i].y + player.height && monsters[i].y + monsters[i].height > player.y && player.dy < 0) {
+		if (monsters[i].x < player.x + player.width && monsters[i].x + monsters[i].width > player.x && monsters[i].y < monsters[i].y + player.height && monsters[i].y + monsters[i].height > player.y) {
 			gameOver();
 			
 		} //if (monsters[i].x < player.x + player.width && monsters[i].x + monsters[i].width > player.x && monsters[i].y < monsters[i].y + player.height && monsters[i].y + monsters[i].height > player.y && player.dy < 0) {
