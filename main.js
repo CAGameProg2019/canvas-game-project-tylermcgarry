@@ -50,7 +50,7 @@ let jumpSpeed = .2;
 let platforms = [];
 let monsters = [];
 let platformNum = 10;
-let monsterNum = 2;
+let monsterNum = 1;
 let boundary = 400;
 
 function gameOver() {
@@ -158,15 +158,7 @@ function update() {
 	if (player.y > canvas.height) {
 		
 			gameOver();
-		
-		
-		
-		
-		
-		//confirm('Play Again')
-//		if (confirm()) {
-//			document.location.reload();
-//		}
+	
 	}
 	
     requestAnimationFrame(update);
